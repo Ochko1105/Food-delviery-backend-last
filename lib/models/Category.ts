@@ -2,7 +2,7 @@ import mongoose, { Schema } from "mongoose";
 
 type CategorySchemaType = {
   name: string;
-  id:string
+  id: any;
 };
 type DishesSchemaType = {
   name: string;
@@ -13,10 +13,11 @@ type DishesSchemaType = {
 };
 
 const CategorySchema = new Schema({
-  id: String,
+  id: Object,
   name: String,
 });
 const Dishesinfo = new Schema({
+  id: Object,
   name: String,
   ingredients: String,
   price: Number,

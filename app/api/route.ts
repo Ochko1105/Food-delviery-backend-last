@@ -6,6 +6,6 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   const body = await request.json();
   const { newCategory } = body;
-  categories.push(newCategory);
+  // categories.push(newCategory);
 }
 // mongodb+srv://Ochko1105mongodb:88786478Vetoo!@cluster0.lfcsfnf.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0

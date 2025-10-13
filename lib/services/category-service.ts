@@ -13,6 +13,7 @@ export const getAllCategories = async () => {
   return await Category.find();
 };
 type DishesSchemaType = {
+  id: any;
   name: string;
   ingredients: string;
   price: number;
@@ -30,8 +31,11 @@ export const getAllDishesinfo = async () => {
   await connectDB();
   return await Dishes.find();
 };
-export const deleteCategory = async (id:string) => {
+export const deleteCategory = async (id: string) => {
   await connectDB();
-  return await Category.findByIdAndDelete(id)
+  return await Category.findByIdAndDelete(id);
 };
-
+export const deletefoodinfo = async (id: string) => {
+  await connectDB();
+  return await Dishes.findByIdAndDelete(id);
+};

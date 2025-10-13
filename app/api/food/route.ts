@@ -9,7 +9,7 @@ import {
 
 export async function GET() {
   const Dishes = await getAllDishesinfo();
-  
+
   return new NextResponse(JSON.stringify({ data: Dishes }), {
     status: 200,
   });
@@ -26,6 +26,7 @@ export async function POST(request: NextRequest) {
     const price = formData.get("price") as string;
     const category = formData.get("category") as string;
     const image = formData.get("image") as File;
+    const id = formData.get("id") as any;
 
     // Console log the received data
     console.log("========== Received Food Data ==========");
@@ -55,6 +56,7 @@ export async function POST(request: NextRequest) {
 
     // Prepare the food data object
     const foodData: FoodType = {
+      id,
       name,
       ingredients,
       price: parseFloat(price),
@@ -63,8 +65,7 @@ export async function POST(request: NextRequest) {
     };
 
     console.log("Final Food Data:", foodData);
-    const result=await CreatDishesinfo(foodData);
-    console.log("Createdishesinfo",result)
+    await CreatDishesinfo(foodData);
 
     // Return success response
     return NextResponse.json(
