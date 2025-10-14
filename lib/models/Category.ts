@@ -4,20 +4,20 @@ type CategorySchemaType = {
   name: string;
   id: any;
 };
-type DishesSchemaType = {
+export type DishesSchemaType = {
   name: string;
   ingredients: string;
   price: number;
   category: string;
   image: string;
+  categorid: string;
 };
 
 const CategorySchema = new Schema({
-  id: Object,
   name: String,
 });
 const Dishesinfo = new Schema({
-  id: Object,
+  categorid: Schema.Types.ObjectId,
   name: String,
   ingredients: String,
   price: Number,

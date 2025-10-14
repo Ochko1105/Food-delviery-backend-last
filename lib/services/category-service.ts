@@ -1,4 +1,4 @@
-import { Category, Dishes } from "../models/Category";
+import { Category, Dishes, DishesSchemaType } from "../models/Category";
 import connectDB from "../mongodb";
 
 export const createCategory = async (name: string) => {
@@ -12,14 +12,6 @@ export const getAllCategories = async () => {
   await connectDB();
   return await Category.find();
 };
-type DishesSchemaType = {
-  id: any;
-  name: string;
-  ingredients: string;
-  price: number;
-  category: string;
-  image: string;
-};
 
 export const CreatDishesinfo = async (form: DishesSchemaType) => {
   await connectDB();
@@ -27,9 +19,9 @@ export const CreatDishesinfo = async (form: DishesSchemaType) => {
   await newDishes.save();
   return newDishes;
 };
-export const getAllDishesinfo = async () => {
+export const getAllDishesinfo = async (id: string) => {
   await connectDB();
-  return await Dishes.find();
+  return await Dishes.findById(id);
 };
 export const deleteCategory = async (id: string) => {
   await connectDB();

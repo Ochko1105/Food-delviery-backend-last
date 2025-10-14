@@ -1,5 +1,8 @@
+import { Schema } from "mongoose";
+
 export type FoodType = {
-  id: any;
+  categorid: string;
+
   name: string;
   ingredients: string;
   image: string;
