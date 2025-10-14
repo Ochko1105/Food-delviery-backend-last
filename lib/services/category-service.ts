@@ -33,5 +33,5 @@ export const deletefoodinfo = async (id: string) => {
 };
 export const getAllDishesinfobyid = async (id: string) => {
   await connectDB();
-  return await Dishes.findById(id);
+  return await Dishes.findById(id)
 };
