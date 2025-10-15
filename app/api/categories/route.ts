@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import {
   createCategory,
-
   getAllCategories,
 } from "../../../lib/services/category-service";
 
 export async function GET() {
   const categories = await getAllCategories();
+
   return new NextResponse(JSON.stringify({ data: categories }), {
     status: 200,
   });
@@ -21,4 +21,3 @@ export async function POST(req: NextRequest) {
     status: 200,
   });
 }
-
