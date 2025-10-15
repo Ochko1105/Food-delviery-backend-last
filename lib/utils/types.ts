@@ -7,5 +7,4 @@ export type FoodType = {
   ingredients: string;
   image: string;
   price: number;
-  category: string;
 };

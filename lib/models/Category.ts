@@ -8,7 +8,7 @@ export type DishesSchemaType = {
   name: string;
   ingredients: string;
   price: number;
-  category: string;
+
   image: string;
   categorid: string;
 };
@@ -16,14 +16,22 @@ export type DishesSchemaType = {
 const CategorySchema = new Schema({
   name: String,
 });
-const Dishesinfo = new Schema({
-  categorid: Schema.Types.ObjectId,
-  name: String,
-  ingredients: String,
-  price: Number,
-  category: String,
-  image: String,
-});
+const Dishesinfo = new Schema(
+  {
+    categorid: {
+      type: Schema.Types.ObjectId,
+      ref: "Category",
+      required: true,
+    },
+    name: String,
+    ingredients: String,
+    price: Number,
+    image: String,
+  },
+  {
+    timestamps: true,
+  }
+);
 
 export const Category =
   mongoose.models.Category ||
