@@ -20,13 +20,15 @@ export async function POST(request: NextRequest) {
   const ingredients = formData.get("ingredients") as string;
   const price = formData.get("price") as string;
   const foodid = formData.get("foodid") as string;
-  const image = formData.get("image") as File;
+  const image = formData.get("image") as File | string;
   const categorid = formData.get("categorid") as string;
 
   let imageUrl = "";
 
-  if (image) {
+  if (image instanceof File) {
     imageUrl = await uploadImageToCloudinary(image);
+  } else if (typeof image === "string") {
+    imageUrl = image;
   }
 
   const foodData: FoodType = {
