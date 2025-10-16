@@ -8,3 +8,11 @@ export type FoodType = {
   image: string;
   price: number;
 };
+export type EditFoodType = {
+  categorid: string;
+  foodid: string;
+  name: string;
+  ingredients: string;
+  image: string;
+  price: number;
+};

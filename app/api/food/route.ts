@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { FoodType } from "../../../lib/utils/types";
+import { EditFoodType, FoodType } from "../../../lib/utils/types";
 import { uploadImageToCloudinary } from "../../../lib/utils/uploadimage";
 import {
   CreatDishesinfo,
+  EditDishesinfo,
   getAllDishesinfo,
 } from "../../../lib/services/category-service";
 

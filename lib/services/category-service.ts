@@ -31,3 +31,15 @@ export const deletefoodinfo = async (id: string) => {
   await connectDB();
   return await Dishes.findByIdAndDelete(id);
 };
+export const EditDishesinfo = async (
+  foodData: DishesSchemaType,
+  foodid: string
+) => {
+  await connectDB();
+  const EditedDishes = await Dishes.findByIdAndUpdate(
+    foodid,
+    foodData
+  ).populate("categorid");
+
+  return EditedDishes;
+};

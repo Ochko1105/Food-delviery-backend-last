@@ -8,7 +8,6 @@ export type DishesSchemaType = {
   name: string;
   ingredients: string;
   price: number;
-
   image: string;
   categorid: string;
 };
@@ -21,7 +20,6 @@ const Dishesinfo = new Schema(
     categorid: {
       type: Schema.Types.ObjectId,
       ref: "Category",
-      required: true,
     },
     name: String,
     ingredients: String,
