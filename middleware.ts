@@ -2,7 +2,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-const allowedOrigins = "http://localhost:3001";
+const allowedOrigins = "http://localhost:3000";
 export function middleware(request: NextRequest) {
   const origin = request.headers.get("origin");
   console.log({ origin });

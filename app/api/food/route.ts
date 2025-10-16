@@ -10,6 +10,7 @@ import {
 
 export async function GET() {
   const Dishes = await getAllDishesinfo();
+  console.log({ Dishes });
 
   return new NextResponse(JSON.stringify({ data: Dishes }), {
     status: 200,

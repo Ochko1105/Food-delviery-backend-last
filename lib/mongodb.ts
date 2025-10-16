@@ -48,3 +48,7 @@ async function connectDB() {
 }
 
 export default connectDB;
+// CLOUDINARY_CLOUD_NAME=dhvh8vwkq
+// CLOUDINARY_API_KEY=332511645546346
+// CLOUDINARY_API_SECRET=A8c71UQUSBoHrSZFta7d6SOAaT0
+// MONGODB_URL=mongodb+srv://Ochko1105mongodb:Od40Q8rLmdROQK7N@cluster0.lfcsfnf.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0c
