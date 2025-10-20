@@ -1,4 +1,5 @@
 import { Category, Dishes, DishesSchemaType } from "../models/Category";
+import { User } from "../models/User";
 import connectDB from "../mongodb";
 
 export const createCategory = async (name: string) => {
