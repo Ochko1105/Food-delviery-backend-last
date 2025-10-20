@@ -1,25 +1,25 @@
-import { NextRequest, NextResponse } from "next/server";
-
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import { createUser, getUsers } from "../../../../lib/services/user-service";
-export async function GET() {
-  const User = await getUsers();
-
-  return new NextResponse(JSON.stringify({ data: User }), {
-    status: 200,
-  });
-}
+import { NextRequest } from "next/server";
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
 
-  const Hashpassword = bcrypt.hashSync(body.password, 1);
+  const Hashpassword = bcrypt.hashSync(body.password, 10);
   const compare = bcrypt.compareSync(Hashpassword, body.password);
-  console.log({ compare });
 
-  await createUser(body.email, body.password, "USER");
+  const result2 = await createUser(body.email, body.password, "USER");
+  console.log({ result2 });
 
-  return new NextResponse(JSON.stringify({ message: "User created" }), {
-    status: 200,
-  });
+  if (result2) {
+    return Response.json({
+      success: true,
+      message: "Login Successful",
+    });
+  } else {
+    return Response.json({
+      success: false,
+      message: "Login Failed",
+    });
+  }
 }

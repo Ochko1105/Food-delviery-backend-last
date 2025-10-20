@@ -8,9 +8,11 @@ export const createUser = async (
 ) => {
   await connectDB();
   const newUser = new User({ email, password, role });
+  console.log({ newUser });
 
-  await newUser.save();
-  return newUser;
+  const result = await newUser.save();
+  console.log("dood", result);
+  return true;
 };
 export const getUsers = async () => {
   await connectDB();
