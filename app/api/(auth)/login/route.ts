@@ -5,9 +5,12 @@ import { findUser } from "../../../../lib/services/user-service";
 export async function POST(req: NextRequest) {
   const body = await req.json();
   const { email, password } = await body;
-  const result = await findUser(email, password);
 
-  if (result) {
+  const result = await findUser(email);
+
+  const compare = bcrypt.compareSync(password, result.password);
+
+  if (compare) {
     return Response.json({
       success: true,
       message: "Login Successful",
