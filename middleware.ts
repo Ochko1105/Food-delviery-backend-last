@@ -1,40 +1,40 @@
-// middleware.ts
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-const allowedOrigins = "https://food-delivery-admin-ebon-seven.vercel.app/";
 export function middleware(request: NextRequest) {
-  const origin = request.headers.get("origin");
-  console.log({ origin });
-
-  if (origin && !allowedOrigins.includes(origin)) {
+  // Handle preflight OPTIONS request
+  if (request.method === "OPTIONS") {
     return new NextResponse(null, {
-      status: 400,
-      statusText: "Bad Request",
+      status: 200,
       headers: {
-        "Content-Type": "text/plain",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods":
+          "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+        "Access-Control-Allow-Headers":
+          "Content-Type, Authorization, X-Requested-With",
+        "Access-Control-Max-Age": "86400",
       },
     });
   }
 
+  // Handle actual request
   const response = NextResponse.next();
 
-  if (origin && allowedOrigins.includes(origin)) {
-    response.headers.set("Access-Control-Allow-Origin", origin);
-    response.headers.set(
-      "Access-Control-Allow-Methods",
-      "GET, POST, PUT, DELETE, OPTIONS"
-    );
-    response.headers.set(
-      "Access-Control-Allow-Headers",
-      "Content-Type, Authorization"
-    );
-    response.headers.set("Access-Control-Allow-Credentials", "true");
-  }
+  // Add CORS headers to the response
+  response.headers.set("Access-Control-Allow-Origin", "*");
+  response.headers.set(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PUT, DELETE, PATCH, OPTIONS"
+  );
+  response.headers.set(
+    "Access-Control-Allow-Headers",
+    "Content-Type, Authorization, X-Requested-With"
+  );
 
   return response;
 }
 
+// Configure which routes the middleware should run on
 export const config = {
-  matcher: "/api/:path*", // Apply middleware to all API routes
+  matcher: "/api/:path*", // Apply to all API routes
 };
