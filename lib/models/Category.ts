@@ -15,7 +15,7 @@ export type DishesSchemaType = {
 const CategorySchema = new Schema({
   name: String,
 });
-const Dishesinfo = new Schema(
+export const Dishesinfo = new Schema(
   {
     categorid: {
       type: Schema.Types.ObjectId,

@@ -1,3 +1,4 @@
+import OrderedFood, { OrderfoodType } from "../models/Orderfood";
 import { User } from "../models/User";
 import connectDB from "../mongodb";
 
@@ -26,4 +27,27 @@ export const findUser = async (email: string) => {
   } else {
     return false;
   }
+};
+export const CreateFoodOrder = async (Orderfood: OrderfoodType) => {
+  await connectDB();
+
+  const newFoodorder = new OrderedFood(Orderfood);
+  const result = await newFoodorder.save();
+  return result;
+};
+export const getOrderedFoods = async () => {
+  await connectDB();
+  return await OrderedFood.find();
+};
+type Editedstatus = {
+  status: string;
+};
+
+export const EditStatus = async (foodid: string, newStatus: string) => {
+  await connectDB();
+  return await OrderedFood.findByIdAndUpdate(
+    foodid,
+    { status: newStatus },
+    { new: true }
+  );
 };
